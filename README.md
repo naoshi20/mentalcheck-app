@@ -9,3 +9,9 @@
   511  python manage.py collectstatic
   512  python manage.py runserver 8001
   513  python manage.py migrate
+
+  # Staticファイルの追加方法
+  1. staticフォルダ以下に該当ファイルを設置
+  2. python manage.py collectstatic
+  3. cmd + Cでrunserverを停止&再起動
+  4. リロード
