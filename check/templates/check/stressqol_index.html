@@ -1,22 +1,17 @@
-{% extends "check/base.html" %}
-{% load static %}
-
-{% block content %}
+{% extends 'check/base.html' %} {% block content %}
 <div class="main">
   <div class="main-question" id="top">
     <div class="container">
       <div class="form-container swiper">
+        {% if user.is_authenticated %}
         <form method="post">
           <div class="swiper">
-            <div class="remaining-box">
-              <p>残り<span id="remaining"></span>問/全<span id="all"></span>問中</p>
-            </div>
             <h1 class="construct_name">ストレス&QOL</h1>
             <div class="swiper-wrapper">
-              {% if stress_qol_questions %} {% for question in stress_qol_questions %}
+              {% if question_list %} {% for question in question_list %}
               <div class="question-container swiper-slide">
                 <div class="question-title-container">
-                  <p class="quetion-number" id="question-number">{{ forloop.counter }}</p>
+                  <p class="quetion-number">{{ forloop.counter }}</p>
                   <p class="quetion-title">{{ question.question_text }}</p>
                 </div>
                 {% csrf_token %}
@@ -30,12 +25,12 @@
                     required
                     onclick="next()"
                   />
-                  <label
-                    for="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_1"
-                    class="choice-label"
-                  >
-                    1
-                  </label>
+                    <label
+                      for="question_{{question.construct_id.construct_slug}}_{{ question.question_order }}_1"
+                      class="choice-label"
+                    >
+                      1
+                    </label>
                   <input
                     class="choice"
                     type="radio"
@@ -99,117 +94,33 @@
                 </div>
                 <div class="choice-desc">
                   <div class="choice-desc-word word-left">全くそう思わない</div>
-                  <div class="choice-desc-word word-center">
-                    どちらとも言えない
-                  </div>
+                  <div class="choice-desc-word word-center">どちらとも言えない</div>
                   <div class="choice-desc-word word-right">大変そう思う</div>
                 </div>
               </div>
-              {% endfor %} 
-              {% if user.is_authenticated %} 
-              {% else %}
-              {% endif %} {% else %}
+              {% endfor %} {% else %}
               <p>No questions are available.</p>
-              {% endif %}
+              {% endif %} 
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next" id="next"></div>
           </div>
-          <div class="submit-wrapper" id="result-button-box">
-            <input class="submit-button result-show-button" type="submit" value="結果表示" />
+          <div class="submit-wrapper">
+            <input class="submit-button" type="submit" value="結果表示" />
           </div>
         </form>
+        {% else %}
+        <p>You are not logged in</p>
+        <p>
+          You can
+          <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+          if you like.
+        </p>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
 
-{% if user.is_authenticated %} 
-{% else %}
-<div id="easyModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>ログインがおすすめ☺️</h2>
-      <span class="modalClose">×</span>
-    </div>
-    <div class="modal-body">
-      <p>ログインすると様々な機能が使えるようになるよ🎉</p>
-      <div class="modal-button-container">
-        <div class="main-red-button-hover">
-          <a class="modalClose" href="#">
-            ゲスト
-          </a>
-        </div>
-        <div class="main-red-button-hover">
-          <a href="{% url 'accounts:login' %}?next={{ request.path }}">ログイン</a>
-        </div>
-    </div>
-    </div>
-  </div>
-</div>
-{% endif %}
-<script>
-
-document.getElementById('all').innerHTML = 8;
-document.getElementById('remaining').innerHTML = 8;
-
-let q_a = {};
-
-function resultButtonShow(){
-  document.getElementById('result-button-box').style.display = 'block';
-}
-
-function valueChange(event){
-  console.log(event.currentTarget.name + 'の回答は' + event.currentTarget.value + 'です');
-  q_a[event.currentTarget.name] = event.currentTarget.value;
-  let now = Object.keys(q_a).length;
-  document.getElementById('remaining').innerHTML = 8 - now;
-  if(Object.keys(q_a).length >= 8){
-    resultButtonShow();
-  }
-}
-
-for (let i=1;i<=8;i++){
-  let slug = 'stress';
-  if (i>6){
-    slug = 'qol';
-  } 
-  let questionId = 'question_'+ slug + '_' + String(i);
-  for (let j=1;j<=5;j++){
-    let choiceId = questionId + '_' + String(j);
-    document.getElementById(choiceId).addEventListener('change', valueChange, true);
-  }
-}
-
-//モーダル
-const modal = document.getElementById('easyModal');
-const buttonClose1 = document.getElementsByClassName('modalClose')[0];
-const buttonClose2 = document.getElementsByClassName('modalClose')[1];
-
-//ボタンがクリックされた時
-if (modal != null){
-  window.addEventListener('load', modalOpen);
-  function modalOpen() {
-    modal.style.display = 'block';
-  };
-
-  //バツ印がクリックされた時
-  buttonClose1.addEventListener('click', modalClose);
-  buttonClose2.addEventListener('click', modalClose);
-  function modalClose() {
-    modal.style.display = 'none';
-  };
-
-  //モーダルコンテンツ以外がクリックされた時
-  addEventListener('click', outsideClose);
-  function outsideClose(e) {
-    if (e.target == modal) {
-      modal.style.display = 'none';
-    };
-  };
-}
-
-</script>
-
-{% endblock %}
+{% endblock content %}
