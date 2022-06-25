@@ -1,0 +1,70 @@
+{% extends 'check/base.html' %}
+{% load widget_tweaks %}
+ {% block content %} 
+<div class="main">
+  <div class="main-question" id="top">
+    <div class="container">
+      <div class="row">
+          
+          <div class="section-heading">
+            <form action="" method="POST" class="login-signup tab-login" id="login-signup">
+              <div class="form-content">
+                <div class="login-signup-title-container tab-pannel">
+                  <div class="login-signup-title-box tab-group">
+                    <h2 class="active login-signup-title tab tab-login"><a href="">ログイン</a></h2>
+                    <h2 class="nonactive login-signup-title tab tab-signup"><a id="question_list_for_signup" href="{% url 'accounts:signup' %}">新規登録</a></h2>
+                  </div>
+                </div>
+
+                <div class="row panel tab-login is-show">
+                  {% for field in form %}
+                  <div class="col-lg-12">
+                    <fieldset>
+                      {{ field }}
+                      {{ field.errors }}
+                    </fieldset>
+                  </div>
+                  {% endfor %}
+                  {% if form.non_field_errors %}
+                      <ul class='form-errors'>
+                          {% for error in form.non_field_errors %}
+                              <li class="error-message">{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <input type="hidden" name="next" id="question_list_for_index" value="">
+                      <button type="submit" id="form-submit" class="main-button login-button">ログイン</button>
+                      {% csrf_token %}
+                    </fieldset>
+                  </div>
+                  <div class="forget-pass">
+                    <p><a href="{% url 'accounts:signup' %}?next={{ request.path }}">アカウントをお持ちではないですか?</a></p>
+                    <p><a href="#">パスワードをお忘れですか?</a></p>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+const question_list = JSON.parse('{{question_list|safe}}');
+console.log(Object.keys(question_list))
+let path_for_index = '/check/before/?'
+let path_for_signup = "{% url 'accounts:signup' %}?"
+for (let key of Object.keys(question_list)) {
+  path_for_index += String(key) + '=' + String(question_list[key]) + '&';
+  path_for_signup += String(key) + '=' + String(question_list[key]) + '&';
+}
+console.log(path_for_index)
+console.log(path_for_signup)
+document.getElementById('question_list_for_index').value = path_for_index;
+document.getElementById('question_list_for_signup').href = path_for_signup;
+</script>
+{% endblock %}
