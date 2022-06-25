@@ -42,7 +42,7 @@ heroku config:set DISABLE_COLLECTSTATIC=1
 10. git pull #最新状態を取り込める
 
 ## heroku posgres連携
-heroku run python manage.py createsuperuser --app graspy-1
+heroku run python manage.py createsuperuser --app {{appname}}
 
 ## postgres operations
 - heroku addons
