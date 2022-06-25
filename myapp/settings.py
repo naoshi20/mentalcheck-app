@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'check.apps.CheckConfig',
     'accounts.apps.AccountsConfig',
+    'bootstrap4',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +73,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'builtins': [
+                'bootstrap4.templatetags.bootstrap4',
             ],
         },
     },
@@ -131,3 +136,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#load heroku database settings
+import django_heroku
+django_heroku.settings(locals())
+
