@@ -23,11 +23,9 @@
 4. リロード
 
 ## static files import error
-STATIC_ROOT: 本番環境でのみ利用される。nginxで静的ファイルを配信したい場合など。manage.py collectstaticによって静的ファイルがここにコピーされる。
-STATICFILES_DIRS: ローカルで使用。cssが存在する全てのディレクトリを指定する。{% static %}タグを使った際に見に行く先のフォルダ.collectstaticを実行した際に見に行くフォルダ
-STATIC_URL: https://static.example.org/filename.extにおける、https://static.example.org 部分のURL.
-heroku config:set DISABLE_COLLECTSTATIC=1
-ローカルでpython manage.py collectstatic --noinput してから
+- STATIC_ROOT: 本番環境でのみ利用される。nginxで静的ファイルを配信したい場合など。manage.py collectstaticによって静的ファイルがここにコピーされる。
+- STATICFILES_DIRS: ローカルで使用。cssが存在する全てのディレクトリを指定する。{% static %}タグを使った際に見に行く先のフォルダ.collectstaticを実行した際に見に行くフォルダ
+- STATIC_URL: https://static.example.org/filename.extにおける、https://static.example.org 部分のURL.
 
 ## gitの運用
 1. git clone
