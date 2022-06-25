@@ -65,12 +65,26 @@
   </head>
     <body>
         <img src="{% static 'images/fabicon.jpg' %}" />
-        {% include "_navbar.html" %}
-        <div>
-            {% block main %}
-            {% endblock %}
-        </div>
-        {% include "_footer.html" %}
+
+    <header>
+      <div class="header">
+        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <nav class="main-nav">
+                    <!--後程追加-->
+                </nav>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+    </header>
+
+    <div class="main">
+      {% block content %} {% endblock content %}
+    </div>
         
     <footer>
       <div class="container">
