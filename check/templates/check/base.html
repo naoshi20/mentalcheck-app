@@ -66,13 +66,13 @@
     <body>
         <img src="{% static 'images/fabicon.jpg' %}" />
 
-  {% include '_navbar.html' %}
+  {% include 'check/_navbar.html' %}
   
   <div class="main">
     {% block content %} {% endblock content %}
   </div>
 
-  {% include '_footer.html' %}
+  {% include 'check/_footer.html' %}
 
   <!-- Scripts -->
   <script src="{% static 'js/jquery.min.js' %}"></script>

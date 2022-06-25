@@ -143,3 +143,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import django_heroku
 django_heroku.settings(locals())
 
+AUTH_USER_MODEL = 'check.User' #ここ問題ある？
+
+LOGIN_REDIRECT_URL = "check:beforeIndex"
+LOGIN_URL = "accounts:login"
+LOGOUT_URL = "logout"
