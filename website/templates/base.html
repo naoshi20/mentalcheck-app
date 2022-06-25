@@ -1,9 +1,42 @@
 {% load static %}
 <!doctype HTML>
 <html>
-    <head>
-        <link rel="stylesheet" href="{% static 'main.css' %}">
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="メンタルチェックを通して、自分の心の状態を把握しましょう。"
+    />
+    <meta name="author" content="Diix LLC." />
+
+    <meta property="og:url" content="https://***" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Graspy - Mental State Check (Stress Check)"
+    />
+    <meta
+      property="og:description"
+      content="メンタルチェックを通して、自分の心の状態を把握しましょう。"
+    />
+    <meta property="og:site_name" content="Graspy - メンタルチェック" />
+    <meta property="og:image" content="{% static 'images/graspy_logo.jpg' %}" />
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="{% static 'images/fabicon.jpg' %}"/>
+
+
+  </head>
     <body>
         <img src="{% static 'images/fabicon.jpg' %}" />
         {% include "_navbar.html" %}
