@@ -5,7 +5,7 @@
   504  python3 -m venv ./venv --prompt django-app
   505  source venv/bin/activate
   507  python -m pip install -r requirements.txt
-  508  /Users/naoshi/Desktop/django-website-04/venv/bin/python -m pip install --upgrade pip
+  508  /Users/naoshi/Desktop/mentalcheck2/venv/bin/python -m pip install --upgrade pip
   511  python manage.py collectstatic
   512  python manage.py runserver 8001
   513  python manage.py migrate
