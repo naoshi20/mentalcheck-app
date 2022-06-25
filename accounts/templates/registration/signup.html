@@ -1,0 +1,60 @@
+{% extends 'check/base.html' %}
+{% load widget_tweaks %}
+ {% block content %} 
+<div class="main">
+  <div class="main-question" id="top">
+    <div class="container">
+      <div class="row">
+          
+          <div class="section-heading">
+            <form action="" method="POST" class="login-signup tab-login" id="login-signup">
+
+              <div class="login-signup-title-container tab-pannel">
+                <div class="login-signup-title-box tab-group">
+                  <h2 class="nonactive login-signup-title tab tab-login"><a id="question_list_for_login" href="{% url 'accounts:login' %}">ログイン</a></h2>
+                  <h2 class="active login-signup-title tab tab-signup"><a href="">新規登録</a></h2>
+                </div>
+              </div>
+
+              <div class="row panel tab-signup is-show">
+                {{ form.non_field_errors }}
+                {% for field in form %}
+                <div class="col-lg-12">
+                  <fieldset>
+                    {{ field }}
+                    {{ field.errors }}
+                  </fieldset>
+                </div>
+                {% endfor %}
+                <input type="hidden" name="next" id="question_list_for_index" value="">
+                <button type="submit" class="main-button login-button">無料登録</button>
+                {% csrf_token %}
+              </div>
+
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const question_list = JSON.parse('{{question_list|safe}}');
+console.log(Object.keys(question_list))
+let path_for_index = '/check/before/?'
+let path_for_login = "{% url 'accounts:login' %}?"
+for (let key of Object.keys(question_list)) {
+  path_for_index += String(key) + '=' + String(question_list[key]) + '&';
+  path_for_login += String(key) + '=' + String(question_list[key]) + '&';
+}
+console.log(path_for_index)
+console.log(path_for_login)
+document.getElementById('question_list_for_index').value = path_for_index;
+document.getElementById('question_list_for_login').href = path_for_login;
+
+let q_a = JSON.stringify(JSON.parse('{{question_list|safe}}'));
+console.log(q_a);
+document.getElementsByName('answers')[0].value = q_a;
+
+</script>
+{% endblock %}
