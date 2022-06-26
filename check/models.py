@@ -137,7 +137,7 @@ class Question(models.Model):
 
 class StressQOL(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField()
 
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -149,7 +149,7 @@ class Answer(models.Model):
     construct = models.ForeignKey(
         Construct, on_delete=models.CASCADE, null=True)
     avg = models.IntegerField(null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField()
 
     updated_at = models.DateTimeField(auto_now=True)
 
