@@ -1,123 +1,92 @@
 {% extends 'check/base.html' %} {% block content %}
 <div class="main">
-        <div class="main-question" id="top">
-                <div class="container">
-                        <div class="form-container result-container">
-                                <div class="top-container">
-                                        <div class="top-right-container top-right-container-stressqol">
-                                                <div class="status-box stress-qol-type-box" id="status-box">
-                                                        <div class="status-box-inner">
-                                                                <h1 class="status-text">
-                                                                        <span id="stress-rank"></span><span
-                                                                                id="qol-rank"></span><span
-                                                                                class="small-text">&nbsp;型&nbsp;</span><span
-                                                                                id="status"></span><span
-                                                                                class="small-text">&nbsp;タイプ</span>
-                                                                </h1>
-                                                                <p class="previous-result">前回：<span
-                                                                                id="previous-stress-rank"></span><span
-                                                                                id="previous-qol-rank"></span>型<span
-                                                                                id="previous-type"></span>タイプ</p>
-                                                                <div class="detail-box">
-                                                                        <div class="stess-box">
-                                                                                <p>ストレス</p>
-                                                                                <p class="rank-point"><span
-                                                                                                id="stress-rank2"
-                                                                                                class="rank-text"></span>ランク<span
-                                                                                                class="rank-text">｜{{
-                                                                                                point_stress }}</span>点
-                                                                                </p>
-                                                                        </div>
-                                                                        <div class="qol-box">
-                                                                                <p>QOL</p>
-                                                                                <p class="rank-point"><span
-                                                                                                id="qol-rank2"
-                                                                                                class="rank-text"></span>ランク<span
-                                                                                                class="rank-text">｜{{
-                                                                                                point_qol }}</span>点</p>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                        <div class="top-right-container" style="height: 100%;">
-                                                <div class="chart-box">
-                                                        <canvas class="canvas3" id="myChart3"
-                                                                style="height: 100px; width: 100px;" ;></canvas>
-                                                </div>
-                                        </div>
+    <div class="main-question" id="top">
+        <div class="container">
+            <div class="form-container result-container">
+                <div class="top-container">
+                    <div class="top-right-container top-right-container-stressqol">
+                        <div class="status-box stress-qol-type-box" id="status-box">
+                            <div class="status-box-inner">
+                                <h1 class="status-text">
+                                    <span id="stress-rank"></span><span id="qol-rank"></span><span class="small-text">&nbsp;型&nbsp;</span><span id="status"></span><span class="small-text">&nbsp;タイプ</span>
+                                </h1>
+                                <p class="previous-result">前回：<span id="previous-stress-rank"></span><span id="previous-qol-rank"></span>型<span id="previous-type"></span>タイプ</p>
+                                <div class="detail-box">
+                                    <div class="stess-box">
+                                        <p>ストレス</p>
+                                        <p class="rank-point"><span id="stress-rank2" class="rank-text"></span>ランク<span class="rank-text">｜{{ point_stress }}</span>点</p>
+                                    </div>
+                                    <div class="qol-box">
+                                        <p>QOL</p>
+                                        <p class="rank-point"><span id="qol-rank2" class="rank-text"></span>ランク<span class="rank-text">｜{{ point_qol }}</span>点</p>
+                                    </div>
                                 </div>
-                                <p id="status-desc">タイプに関する説明</p>
-                                <div class="top-container">
-                                        <div class="top-right-container" style="height: 100%;">
-                                                <div class="chart-box">
-                                                        <canvas class="canvas4" id="myChart4"
-                                                                style="height: 100px; width: 200px;"></canvas>
-                                                </div>
-                                                <p class="diff-from-stress">あなたの得点は、標準点と比べて<span
-                                                                class="diff-from-criteria-stress"
-                                                                id="diff-from-criteria-stress"></span>点、平均点と比べて<span
-                                                                class="diff-from-average-stress"
-                                                                id="diff-from-average-stress"></span>点です。また、{{
-                                                        gross_cnt_stress }}人中{{ rank_stress }}位です。</p>
-                                        </div>
-                                        <div class="top-right-container" style="height: 100%;">
-                                                <div class="chart-box">
-                                                        <canvas class="canvas5" id="myChart5"
-                                                                style="height: 100px; width: 200px;"></canvas>
-                                                </div>
-                                                <p class="diff-from-qol">あなたの得点は、標準点と比べて<span
-                                                                class="diff-from-criteria-qol"
-                                                                id="diff-from-criteria-qol"></span>点、平均点と比べて<span
-                                                                class="diff-from-average-qol"
-                                                                id="diff-from-average-qol"></span>点です。また、{{
-                                                        gross_cnt_qol }}人中{{ rank_qol }}位です。</p>
-                                        </div>
-                                </div>
-                                <div class="top-container">
-                                        <div class="top-right-container" style="height: 100%;">
-                                                <div class="chart-box">
-                                                        <canvas class="canvas1" id="myChart"
-                                                                style="height: 100px; width: 200px;"></canvas>
-                                                </div>
-                                        </div>
-                                        <div class="top-right-container" style="height: 100%;">
-                                                <div class="chart-box">
-                                                        <canvas class="canvas2" id="myChart2"
-                                                                style="height: 100px; width: 200px;"></canvas>
-                                                </div>
-                                        </div>
-                                </div>
-                                <div class="cv-text-box">
-                                        <p>
-                                                我々Graspy運営部は、気軽にカウンセリングを受けられる
-                                                <span>「カジュアルカウンセリングサービス」</span>
-                                                及び
-                                                <span>「心の定期検診&メンテナンスサービス」</span>
-                                                を運営しております。現在、
-                                                <span>無料体験キャンペーン</span>
-                                                も実施中ですので、ご興味ある方は以下のボタンを押してください。
-                                        </p>
-                                </div>
-                                <div class="bottom-button-wrapper">
-                                        <div class="main-red-button return-to-home-button-box">
-                                                <a href="/check/" class="return-to-home-button">ホームへ</a>
-                                        </div>
-                                        <div class="main-red-button campaign-button-box">
-                                                <a href="https://lp.graspy.life/#contact" rel="noopener" target="_blank"
-                                                        class="campaign-button">
-                                                        無料体験
-                                                </a>
-                                        </div>
-                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="top-right-container" style="height: 100%;">
+                        <div class="chart-box">
+                            <canvas class="canvas3" id="myChart3" style="height: 100px; width: 100px;" ;></canvas>
+                        </div>
+                    </div>
                 </div>
+                <p id="status-desc">タイプに関する説明</p>
+                <div class="top-container">
+                    <div class="top-right-container" style="height: 100%;">
+                        <div class="chart-box">
+                            <canvas class="canvas4" id="myChart4" style="height: 100px; width: 200px;"></canvas>
+                        </div>
+                        <p class="diff-from-stress">あなたの得点は、標準点と比べて<span class="diff-from-criteria-stress" id="diff-from-criteria-stress"></span>点、平均点と比べて<span class="diff-from-average-stress" id="diff-from-average-stress"></span>点です。また、{{ gross_cnt_stress }}人中{{ rank_stress }}位です。</p>
+                    </div>
+                    <div class="top-right-container" style="height: 100%;">
+                        <div class="chart-box">
+                            <canvas class="canvas5" id="myChart5" style="height: 100px; width: 200px;"></canvas>
+                        </div>
+                        <p class="diff-from-qol">あなたの得点は、標準点と比べて<span class="diff-from-criteria-qol" id="diff-from-criteria-qol"></span>点、平均点と比べて<span class="diff-from-average-qol" id="diff-from-average-qol"></span>点です。また、{{ gross_cnt_qol }}人中{{ rank_qol }}位です。</p>
+                    </div>
+                </div>
+                <div class="top-container">
+                    <div class="top-right-container" style="height: 100%;">
+                        <div class="chart-box">
+                            <canvas class="canvas1" id="myChart" style="height: 100px; width: 200px;"></canvas>
+                        </div>
+                    </div>
+                    <div class="top-right-container" style="height: 100%;">
+                        <div class="chart-box">
+                            <canvas class="canvas2" id="myChart2" style="height: 100px; width: 200px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="cv-text-box">
+                    <p>
+                        我々Graspy運営部は、気軽にカウンセリングを受けられる
+                        <span>「カジュアルカウンセリングサービス」</span>
+                        及び
+                        <span>「心の定期検診&メンテナンスサービス」</span>
+                        を運営しております。現在、
+                        <span>無料体験キャンペーン</span>
+                        も実施中ですので、ご興味ある方は以下のボタンを押してください。
+                    </p>
+                </div>
+                <div class="bottom-button-wrapper">
+                    <div class="main-red-button return-to-home-button-box">
+                        <a href="/check/" class="return-to-home-button">ホームへ</a>
+                    </div>
+                    <div class="main-red-button campaign-button-box">
+                        <a href="https://lp.graspy.life/#contact" rel="noopener" target="_blank"
+                            class="campaign-button">
+                            無料体験
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script
-        src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
 {{past_data_at_stress|json_script:"past_data_at_stress"}}
 {{past_data_at_qol|json_script:"past_data_at_qol"}}
@@ -127,176 +96,176 @@
 {{hist_thistime_stress|json_script:"hist_thistime_stress"}}
 {{hist_thistime_qol|json_script:"hist_thistime_qol"}}
 <script>
-        const statement_stress = '{{statement_stress}}'
-        const point_stress = '{{point_stress}}'
-        const criteria_stress = '{{criteria_stress}}'
-        const construct_stress = '{{stress}}'
-        const avg_stress = '{{gross_avg_stress}}'
-        const diff_criteria_stress =
-                (point_stress - criteria_stress < 0 ? '' : '+') +
-                (point_stress - criteria_stress)
-        const diff_avg_stress =
-                (point_stress - avg_stress < 0 ? '' : '+') + (point_stress - avg_stress)
-        const diff_criteria_color_stress =
-                point_stress - criteria_stress < 0
-                        ? 'rgba(55, 55, 255, 1)'
-                        : 'rgba(255,55,55,1)'
-        const diff_avg_color_stress =
-                point_stress - avg_stress < 0 ? 'rgba(55, 55, 255, 1)' : 'rgba(255,55,55,1)'
+    const statement_stress = '{{statement_stress}}'
+    const point_stress = '{{point_stress}}'
+    const criteria_stress = '{{criteria_stress}}'
+    const construct_stress = '{{stress}}'
+    const avg_stress = '{{gross_avg_stress}}'
+    const diff_criteria_stress =
+        (point_stress - criteria_stress < 0 ? '' : '+') +
+        (point_stress - criteria_stress)
+    const diff_avg_stress =
+        (point_stress - avg_stress < 0 ? '' : '+') + (point_stress - avg_stress)
+    const diff_criteria_color_stress =
+        point_stress - criteria_stress < 0
+            ? 'rgba(55, 55, 255, 1)'
+            : 'rgba(255,55,55,1)'
+    const diff_avg_color_stress =
+        point_stress - avg_stress < 0 ? 'rgba(55, 55, 255, 1)' : 'rgba(255,55,55,1)'
 
-        let past_data_values_stress = JSON.parse('{{past_data_values_stress}}')
-        let past_data_at_stress = JSON.parse(
-                document.getElementById('past_data_at_stress').textContent,
-        )
+    let past_data_values_stress = JSON.parse('{{past_data_values_stress}}')
+    let past_data_at_stress = JSON.parse(
+        document.getElementById('past_data_at_stress').textContent,
+    )
 
-        const statement_qol = '{{statement_qol}}'
-        const point_qol = '{{point_qol}}'
-        const criteria_qol = '{{criteria_qol}}'
-        const construct_qol = '{{qol}}'
-        const avg_qol = '{{gross_avg_qol}}'
-        const diff_criteria_qol =
-                (point_qol - criteria_qol < 0 ? '' : '+') + (point_qol - criteria_qol)
-        const diff_avg_qol =
-                (point_qol - avg_qol < 0 ? '' : '+') + (point_qol - avg_qol)
-        const diff_criteria_color_qol =
-                point_qol - criteria_qol < 0 ? 'rgba(55, 55, 255, 1)' : 'rgba(255,55,55,1)'
-        const diff_avg_color_qol =
-                point_qol - avg_qol < 0 ? 'rgba(55, 55, 255, 1)' : 'rgba(255,55,55,1)'
+    const statement_qol = '{{statement_qol}}'
+    const point_qol = '{{point_qol}}'
+    const criteria_qol = '{{criteria_qol}}'
+    const construct_qol = '{{qol}}'
+    const avg_qol = '{{gross_avg_qol}}'
+    const diff_criteria_qol =
+        (point_qol - criteria_qol < 0 ? '' : '+') + (point_qol - criteria_qol)
+    const diff_avg_qol =
+        (point_qol - avg_qol < 0 ? '' : '+') + (point_qol - avg_qol)
+    const diff_criteria_color_qol =
+        point_qol - criteria_qol < 0 ? 'rgba(55, 55, 255, 1)' : 'rgba(255,55,55,1)'
+    const diff_avg_color_qol =
+        point_qol - avg_qol < 0 ? 'rgba(55, 55, 255, 1)' : 'rgba(255,55,55,1)'
 
-        let past_data_values_qol = JSON.parse('{{past_data_values_qol}}')
-        let past_data_at_qol = JSON.parse(
-                document.getElementById('past_data_at_qol').textContent,
-        )
+    let past_data_values_qol = JSON.parse('{{past_data_values_qol}}')
+    let past_data_at_qol = JSON.parse(
+        document.getElementById('past_data_at_qol').textContent,
+    )
 
-        function getRank(point) {
-                let rank = ''
-                if (point < 25) {
-                        rank = 'C'
-                } else if (point >= 25 && point < 50) {
-                        rank = 'B'
-                } else if (point >= 50 && point < 75) {
-                        rank = 'A'
-                } else {
-                        rank = 'S'
-                }
-                return rank
-        }
-
-        function getType(rankStress, rankQol) {
-                let stressQolType = ''
-                if ((rankStress == 'C' || rankStress == 'B') && (rankQol == 'C' || rankQol == 'B')) {
-                        stressQolType = 'ダラダラ'
-                } else if ((rankStress == 'C' || rankStress == 'B') && (rankQol == 'A' || rankQol == 'S')) {
-                        stressQolType = 'キラキラ'
-                } else if ((rankStress == 'A' || rankStress == 'S') && (rankQol == 'A' || rankQol == 'S')) {
-                        stressQolType = 'ギラギラ'
-                } else {
-                        stressQolType = 'ヘトヘト'
-                }
-                return stressQolType
-        }
-
-        const previous_point_stress = past_data_values_stress[past_data_values_stress.length - 2];
-        const previous_point_qol = past_data_values_qol[past_data_values_qol.length - 2];
-        const previous_rank_stress = getRank(previous_point_stress);
-        const previous_rank_qol = getRank(previous_point_qol);
-        const previous_type = getType(previous_rank_stress, previous_rank_qol);
-
-        document.getElementById('previous-stress-rank').innerHTML = previous_rank_stress;
-        document.getElementById('previous-qol-rank').innerHTML = previous_rank_qol;
-        document.getElementById('previous-type').innerHTML = previous_type;
-
-
-        var color_stress, borderColor_stress, evaluation_stress, point_color_stress;
-        var color_qol, borderColor_qol, evaluation_qol, point_color_qol;
-
-        color_stress = 'rgba(75, 192, 192, 0.2)';
-        color_qol = 'rgba(255, 205, 86, 0.2)';
-        borderColor_stress = 'rgba(75, 192, 192, 1)';
-        borderColor_qol = 'rgba(255, 205, 86, 1)';
-
-        const color_lowest = 'rgba(75,192,192,1)'
-        const color_lower = 'rgba(255,159,64,1)'
-        const color_higher = 'rgba(188, 75, 192, 1)'
-        const color_highest = 'rgba(255,26,104,1)'
-        const lightcolor_lowest = 'rgba(75,192,192,0.2)'
-        const lightcolor_lower = 'rgba(255,159,64,0.2)'
-        const lightcolor_higher = 'rgba(188, 75, 192, 0.2)'
-        const lightcolor_highest = 'rgba(255,26,104,0.2)'
-
-        const dense_color_stress = 'rgba(75,192,192,1)';
-        const weak_color_stress = 'rgba(75,192,192,0.2)';
-        const dense_color_qol = 'rgba(255,159,64,1)';
-        const weak_color_qol = 'rgba(255,159,64,0.2)'
-
-        function degree(point) {
-                let degree = ''
-                if (point < 25) {
-                        degree = 'lowest'
-                } else if (point >= 25 && point < 50) {
-                        degree = 'lower'
-                } else if (point >= 50 && point < 75) {
-                        degree = 'higher'
-                } else {
-                        degree = 'highest'
-                }
-                return degree
-        }
-
-        function degreeDependentData(degree) {
-                if (degree == 'lowest') {
-                        color = 'rgba(54, 162, 235, 0.2)'
-                        borderColor = 'rgba(54, 162, 235, 1)'
-                        status = '低い'
-                        point_color = 'rgba(55, 55, 255, 1)'
-                } else if (degree == 'lower') {
-                        color = 'rgba(75, 192, 192, 0.2)'
-                        borderColor = 'rgba(75, 192, 192, 1)'
-                        status = 'やや低い'
-                        point_color = 'rgba(75, 192, 192, 1)'
-                } else if (degree == 'higter') {
-                        color = 'rgba(255, 205, 86, 0.2)'
-                        borderColor = 'rgba(255, 205, 86, 1)'
-                        status = 'やや高い'
-                        point_color = 'rgba(255, 205, 86, 1)'
-                } else {
-                        color = 'rgba(255, 99, 132, 0.2)'
-                        borderColor = 'rgba(255, 99, 132, 1)'
-                        status = '非常に高い'
-                        point_color = 'rgba(230, 30, 30, 1)'
-                }
-                return [color, borderColor, status, point_color]
-        }
-
-        const degreeStress = degree(point_stress)
-        const degreeQol = degree(point_qol)
-
-                ;[
-                        color_stress,
-                        borderColor_stress,
-                        status_stress,
-                        point_color_stress,
-                ] = degreeDependentData(degreeStress)
-                ;[
-                        color_qol,
-                        borderColor_qol,
-                        status_qol,
-                        point_color_qol,
-                ] = degreeDependentData(degreeQol)
-
-        let stressQolType = ''
-
-        if ((degreeStress == 'lowest' || degreeStress == 'lower') && (degreeQol == 'lowest' || degreeQol == 'lower')) {
-                stressQolType = 'ダラダラ'
-        } else if ((degreeStress == 'lowest' || degreeStress == 'lower') && (degreeQol == 'highest' || degreeQol == 'higher')) {
-                stressQolType = 'キラキラ'
-        } else if ((degreeStress == 'highest' || degreeStress == 'higher') && (degreeQol == 'highest' || degreeQol == 'higher')) {
-                stressQolType = 'ギラギラ'
+    function getRank(point) {
+        let rank = ''
+        if (point < 25) {
+            rank = 'C'
+        } else if (point >= 25 && point < 50) {
+            rank = 'B'
+        } else if (point >= 50 && point < 75) {
+            rank = 'A'
         } else {
-                stressQolType = 'ヘトヘト'
+            rank = 'S'
         }
+        return rank
+    }
 
-        let stressQolTypeDesc = ''
+    function getType(rankStress,rankQol){
+        let stressQolType = ''
+        if ((rankStress == 'C' || rankStress == 'B') && (rankQol == 'C' || rankQol == 'B')) {
+            stressQolType = 'ダラダラ'
+        } else if ((rankStress == 'C' || rankStress == 'B') && (rankQol == 'A' || rankQol == 'S')) {
+            stressQolType = 'キラキラ'
+        } else if ((rankStress == 'A' || rankStress == 'S') && (rankQol == 'A' || rankQol == 'S')) {
+            stressQolType = 'ギラギラ'
+        } else {
+            stressQolType = 'ヘトヘト'
+        }
+        return stressQolType
+    }
+
+    const previous_point_stress = past_data_values_stress[past_data_values_stress.length-2];
+    const previous_point_qol = past_data_values_qol[past_data_values_qol.length-2];
+    const previous_rank_stress = getRank(previous_point_stress);
+    const previous_rank_qol = getRank(previous_point_qol);
+    const previous_type = getType(previous_rank_stress,previous_rank_qol);
+
+    document.getElementById('previous-stress-rank').innerHTML = previous_rank_stress;
+    document.getElementById('previous-qol-rank').innerHTML = previous_rank_qol;
+    document.getElementById('previous-type').innerHTML = previous_type;
+
+
+    var color_stress, borderColor_stress, evaluation_stress, point_color_stress;
+    var color_qol, borderColor_qol, evaluation_qol, point_color_qol;
+
+    color_stress = 'rgba(75, 192, 192, 0.2)';
+    color_qol = 'rgba(255, 205, 86, 0.2)';
+    borderColor_stress = 'rgba(75, 192, 192, 1)';
+    borderColor_qol = 'rgba(255, 205, 86, 1)';
+
+    const color_lowest = 'rgba(75,192,192,1)'
+    const color_lower = 'rgba(255,159,64,1)'
+    const color_higher = 'rgba(188, 75, 192, 1)'
+    const color_highest = 'rgba(255,26,104,1)'
+    const lightcolor_lowest = 'rgba(75,192,192,0.2)'
+    const lightcolor_lower = 'rgba(255,159,64,0.2)'
+    const lightcolor_higher = 'rgba(188, 75, 192, 0.2)'
+    const lightcolor_highest = 'rgba(255,26,104,0.2)'
+
+    const dense_color_stress = 'rgba(75,192,192,1)';
+    const weak_color_stress = 'rgba(75,192,192,0.2)';
+    const dense_color_qol = 'rgba(255,159,64,1)';
+    const weak_color_qol = 'rgba(255,159,64,0.2)'
+
+    function degree(point) {
+        let degree = ''
+        if (point < 25) {
+            degree = 'lowest'
+        } else if (point >= 25 && point < 50) {
+            degree = 'lower'
+        } else if (point >= 50 && point < 75) {
+            degree = 'higher'
+        } else {
+            degree = 'highest'
+        }
+        return degree
+    }
+
+    function degreeDependentData(degree) {
+        if (degree == 'lowest') {
+            color = 'rgba(54, 162, 235, 0.2)'
+            borderColor = 'rgba(54, 162, 235, 1)'
+            status = '低い'
+            point_color = 'rgba(55, 55, 255, 1)'
+        } else if (degree == 'lower') {
+            color = 'rgba(75, 192, 192, 0.2)'
+            borderColor = 'rgba(75, 192, 192, 1)'
+            status = 'やや低い'
+            point_color = 'rgba(75, 192, 192, 1)'
+        } else if (degree == 'higter') {
+            color = 'rgba(255, 205, 86, 0.2)'
+            borderColor = 'rgba(255, 205, 86, 1)'
+            status = 'やや高い'
+            point_color = 'rgba(255, 205, 86, 1)'
+        } else {
+            color = 'rgba(255, 99, 132, 0.2)'
+            borderColor = 'rgba(255, 99, 132, 1)'
+            status = '非常に高い'
+            point_color = 'rgba(230, 30, 30, 1)'
+        }
+        return [color, borderColor, status, point_color]
+    }
+
+    const degreeStress = degree(point_stress)
+    const degreeQol = degree(point_qol)
+
+        ;[
+            color_stress,
+            borderColor_stress,
+            status_stress,
+            point_color_stress,
+        ] = degreeDependentData(degreeStress)
+        ;[
+            color_qol,
+            borderColor_qol,
+            status_qol,
+            point_color_qol,
+        ] = degreeDependentData(degreeQol)
+
+    let stressQolType = ''
+
+    if ((degreeStress == 'lowest' || degreeStress == 'lower') && (degreeQol == 'lowest' || degreeQol == 'lower')) {
+        stressQolType = 'ダラダラ'
+    } else if ((degreeStress == 'lowest' || degreeStress == 'lower') && (degreeQol == 'highest' || degreeQol == 'higher')) {
+        stressQolType = 'キラキラ'
+    } else if ((degreeStress == 'highest' || degreeStress == 'higher') && (degreeQol == 'highest' || degreeQol == 'higher')) {
+        stressQolType = 'ギラギラ'
+    } else {
+        stressQolType = 'ヘトヘト'
+    }
+
+    let stressQolTypeDesc = ''
 
         if ((degreeStress == 'lowest' || degreeStress == 'lower') && (degreeQol == 'lowest' || degreeQol == 'lower')) {
                 stressQolTypeDesc = '「ダラダラ」タイプに当てはまった方は、ストレス度は低いが生活の満足感も低い状態だと考えられます。現在の生活に対し満足感していなく、何となくだらだらとした生活を送っている状態と思われるます。このタイプはストレスは低いので、「ストレス準適応型」といえますが、メンタルヘルスは高いとはいえないでしょう。何か自分が夢中になれることを探してみてはいかがでしょうか。'
@@ -309,490 +278,490 @@
         }
 
 
-        function getTypeColor(type) {
-                let color = ''
-                if (type == 'ダラダラ') {
-                        color = 'rgba(75,192,192,1)'
-                } else if (type == 'キラキラ') {
-                        color = 'rgba(255,159,64,1)'
-                } else if (type == 'ギラギラ') {
-                        color = 'rgba(188, 75, 192, 1)'
-                } else {
-                        color = 'rgba(255,26,104,1)'
+    function getTypeColor(type){
+        let color = ''
+        if (type=='ダラダラ') {
+            color = 'rgba(75,192,192,1)'
+        } else if (type=='キラキラ') {
+            color = 'rgba(255,159,64,1)'
+        } else if (type=='ギラギラ') {
+            color = 'rgba(188, 75, 192, 1)'
+        } else {
+            color = 'rgba(255,26,104,1)'
+        }
+        return color
+    }
+
+    function getRankColor(point) {
+        let rank = ''
+        if (point < 25) {
+            rank = '#FAA60D'
+        } else if (point >= 25 && point < 50) {
+            rank = '#F3E896'
+        } else if (point >= 50 && point < 75) {
+            rank = '#0CBFF3'
+        } else {
+            rank = '#48F561'
+        }
+        return rank
+    }
+    document.getElementById('status').innerHTML = stressQolType
+    document.getElementById('status-desc').innerHTML = stressQolTypeDesc
+    document.getElementById('status').style.color = getTypeColor(stressQolType);
+    document.getElementById('diff-from-criteria-stress').innerHTML = diff_criteria_stress
+    document.getElementById('diff-from-average-stress').innerHTML = diff_avg_stress
+    document.getElementById('diff-from-criteria-qol').innerHTML = diff_criteria_qol
+    document.getElementById('diff-from-average-qol').innerHTML = diff_avg_qol
+    document.getElementById('stress-rank').innerHTML = getRank(point_stress);
+    document.getElementById('qol-rank').innerHTML = getRank(point_qol);
+    document.getElementById('stress-rank').style.color = getRankColor(point_stress);
+    document.getElementById('qol-rank').style.color = getRankColor(point_qol);
+    document.getElementById('stress-rank2').innerHTML = getRank(point_stress);
+    document.getElementById('qol-rank2').innerHTML = getRank(point_qol);
+    document.getElementById('stress-rank2').style.color = getRankColor(point_stress);
+    document.getElementById('qol-rank2').style.color = getRankColor(point_qol);
+
+    const arbitraryLine = {
+        id: 'arbitraryLine',
+        beforeDraw(chart, args, options) {
+            const {
+                ctx,
+                chartArea: { top, right, bottom, left, width, height },
+                scales: { x, y },
+            } = chart
+            ctx.save()
+            ctx.setLineDash([3])
+            ctx.strokeStyle = 'rgba(255,26,104,1)'
+            ctx.strokeRect(x.getPixelForValue(criteria_stress), top, 0, height)
+            ctx.strokeStyle = dense_color_stress
+            ctx.strokeRect(x.getPixelForValue(avg_stress), top, 0, height / 2)
+            ctx.strokeStyle = dense_color_qol
+            ctx.strokeRect(x.getPixelForValue(avg_qol), top + height / 2, 0, height / 2)
+            ctx.restore()
+            ctx.font = '12px Arial'
+            ctx.fillStyle = 'rgba(255,26,104,1)'
+            ctx.fillText('標準値', x.getPixelForValue(criteria_stress) + 5, top + 98)
+            ctx.fillStyle = dense_color_stress
+            ctx.fillText('ストレスの平均', x.getPixelForValue(avg_stress) + 5, top + 22)
+            ctx.fillStyle = dense_color_qol
+            ctx.fillText('QOLの平均', x.getPixelForValue(avg_qol) + 5, top + height / 2 + 98)
+            ctx.font = '30px Arial'
+            //ctx.fillStyle = 'rgba(128, 128, 128, 0.5)';
+            //ctx.fillText(construct_stress, 25 , height / 2 + top+10);
+        },
+    }
+
+    const options = {
+        indexAxis: 'y',
+        scales: {
+            x: {
+                min: 0,
+                max: 100,
+            },
+        },
+        plugins: {
+            legend: {
+                display: false,
+            },
+        },
+    }
+
+    const chart = new Chart(document.getElementById('myChart'), {
+        type: 'bar',
+        data: {
+            labels: [construct_stress, construct_qol],
+            datasets: [
+                {
+                    label: '',
+                    data: [point_stress, point_qol],
+                    backgroundColor: [weak_color_stress,weak_color_qol],
+                    borderColor: [dense_color_stress,dense_color_qol],
+                    borderWidth: 1,
+                    barPercentage: 0.5
+                },
+            ],
+        },
+        options: options,
+        plugins: [arbitraryLine],
+    })
+
+    //遷移グラフ
+    const arbitraryLine3 = {
+        id: 'arbitraryLine',
+        beforeDraw(chart, args, options) {
+            const {
+                ctx,
+                chartArea: { top, right, bottom, left, width, height },
+                scales: { x, y },
+            } = chart
+            ctx.save()
+            ctx.setLineDash([5])
+            ctx.strokeStyle = 'rgba(255,26,104,1)'
+            ctx.strokeRect(left ,y.getPixelForValue(criteria_stress), width, 0)
+            ctx.strokeStyle = dense_color_stress
+            ctx.strokeRect(left, y.getPixelForValue(avg_stress), width, 0)
+            ctx.strokeStyle = dense_color_qol
+            ctx.strokeRect(left, y.getPixelForValue(avg_qol), width, 0)
+            ctx.restore()
+            ctx.font = '13px Arial'
+            ctx.fillStyle = 'rgba(255,26,104,1)'
+            //ctx.fillText('標準値', left+10, y.getPixelForValue(criteria_stress)-11)
+            ctx.fillStyle = dense_color_stress
+            //ctx.fillText('STRESS', right, y.getPixelForValue(avg_stress)-11)
+            ctx.fillStyle = dense_color_qol
+            //ctx.fillText('QOL', right, y.getPixelForValue(avg_qol)-11)
+            ctx.font = '30px Arial'
+        },
+    }
+    const myChart2 = new Chart(document.getElementById('myChart2'), {
+        type: 'line',
+        data: {
+            labels: past_data_at_stress,
+            datasets: [
+                {
+                    label: ["ストレス（ - 平均）"],
+                    data: past_data_values_stress,
+                    borderColor: dense_color_stress,
+                    pointBorderColor: dense_color_stress,
+                    pointBackgroundColor: 'rgba(0,0,0,0)',
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(0,0,0,0)',
+                },
+                {
+                    label: ["QOL（ - 平均）"],
+                    data: past_data_values_qol,
+                    borderColor: dense_color_qol,
+                    pointBorderColor: dense_color_qol,
+                    pointBackgroundColor: 'rgba(0,0,0,0)',
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(0,0,0,0)',
+                },
+                {
+                    label: ["標準"],
+                    data: past_data_values_qol,
+                    borderColor: 'rgba(255,26,104,1)',
+                    pointBorderColor: "rgba(255,26,104,1)",
+                    pointBackgroundColor: 'rgba(0,0,0,0)',
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(0,0,0,0)',
+                },
+            ],
+        },
+        options: {
+            indexAxis: 'x',
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day',
+                    },
+                    suggestedMin: past_data_at_stress[0], //Date.now() - (3 * 24 * 60 * 60 * 1000),
+                    suggestedMax: past_data_at_stress[-1],
+                },
+                y: {
+                    beginAtZero: true,
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                },
+            },
+        },
+        plugins: [arbitraryLine3],
+    })
+
+    const arbitraryLine2 = {
+        id: 'arbitraryLine2',
+        beforeDraw(chart, args, options) {
+            const {
+                ctx,
+                chartArea: { top, right, bottom, left, width, height },
+                scales: { x, y },
+            } = chart
+            ctx.save()
+            const x_start_first = x.getPixelForValue(75);
+            const x_start_second = x.getPixelForValue(50);
+            const x_start_third = x.getPixelForValue(25);
+            const x_start_forth = x.getPixelForValue(0);
+
+            const y_start_second = y.getPixelForValue(75);
+            const y_start_third = y.getPixelForValue(50);
+            const y_start_forth = y.getPixelForValue(25);
+            const area_width = width / 4;
+            const area_height = y.getPixelForValue(75) - y.getPixelForValue(100);
+            //右上
+            ctx.fillStyle = 'rgba(188, 75, 192, 0.8)' //4
+            ctx.fillRect(x_start_first, top, area_width, area_height)
+            ctx.fillStyle = 'rgba(188, 75, 192, 0.6)' //3
+            ctx.fillRect(x_start_second, top, area_width, area_height)
+            ctx.fillStyle = 'rgba(188, 75, 192, 0.6)' //8
+            ctx.fillRect(x_start_first, y_start_second, area_width, area_height)
+            ctx.fillStyle = 'rgba(188, 75, 192, 0.4)' //7
+            ctx.fillRect(x_start_second, y_start_second, area_width, area_height)
+            //左上
+            ctx.fillStyle = 'rgba(255,159,64,0.6)' //2
+            ctx.fillRect(x_start_third, top, area_width, area_height)
+            ctx.fillStyle = 'rgba(255,159,64,0.8)' //1
+            ctx.fillRect(x_start_forth, top, area_width, area_height)
+            ctx.fillStyle = 'rgba(255,159,64,0.4)' //4
+            ctx.fillRect(x_start_third, y_start_second, area_width, area_height)
+            ctx.fillStyle = 'rgba(255,159,64,0.6)' //3
+            ctx.fillRect(x_start_forth, y_start_second, area_width, area_height)
+            //左下
+            ctx.fillStyle = 'rgba(75,192,192,0.4)' //10
+            ctx.fillRect(x_start_third, y_start_third, area_width, area_height)
+            ctx.fillStyle = 'rgba(75,192,192,0.6)' //9
+            ctx.fillRect(x_start_forth, y_start_third, area_width, area_height)
+            ctx.fillStyle = 'rgba(75,192,192,0.6)' //14
+            ctx.fillRect(x_start_third, y_start_forth, area_width, area_height)
+            ctx.fillStyle = 'rgba(75,192,192,0.8)' //13
+            ctx.fillRect(x_start_forth, y_start_forth, area_width, area_height)
+            //右下
+            ctx.fillStyle = 'rgba(255,26,104,0.6)' //12
+            ctx.fillRect(x_start_first, y_start_third, area_width, area_height)
+            ctx.fillStyle = 'rgba(255,26,104,0.4)' //11
+            ctx.fillRect(x_start_second, y_start_third, area_width, area_height)
+            ctx.fillStyle = 'rgba(255,26,104,0.8)' //16
+            ctx.fillRect(x_start_first, y_start_forth, area_width, area_height)
+            ctx.fillStyle = 'rgba(255,26,104,0.6)' //15
+            ctx.fillRect(x_start_second, y_start_forth, area_width, area_height)
+            //テキスト
+            ctx.fillStyle = 'white'
+            ctx.textAlign = 'center';
+            //ランク
+            //
+            ctx.font = '19px Arial'
+            ctx.fillText('CC', x.getPixelForValue(12.5), y.getPixelForValue(12.5))
+            ctx.fillText('CB', x.getPixelForValue(12.5), y.getPixelForValue(37.5))
+            ctx.fillText('CA', x.getPixelForValue(12.5), y.getPixelForValue(62.5))
+            ctx.fillText('CS', x.getPixelForValue(12.5), y.getPixelForValue(87.5))
+            //
+            ctx.fillText('BC', x.getPixelForValue(37.5), y.getPixelForValue(12.5))
+            ctx.fillText('BB', x.getPixelForValue(37.5), y.getPixelForValue(37.5))
+            ctx.fillText('BA', x.getPixelForValue(37.5), y.getPixelForValue(62.5))
+            ctx.fillText('BS', x.getPixelForValue(37.5), y.getPixelForValue(87.5))
+
+            ctx.fillText('AC', x.getPixelForValue(62.5), y.getPixelForValue(12.5))
+            ctx.fillText('AB', x.getPixelForValue(62.5), y.getPixelForValue(37.5))
+            ctx.fillText('AA', x.getPixelForValue(62.5), y.getPixelForValue(62.5))
+            ctx.fillText('AS', x.getPixelForValue(62.5), y.getPixelForValue(87.5))
+            //SX
+            ctx.fillText('SC', x.getPixelForValue(87.5), y.getPixelForValue(12.5))
+            ctx.fillText('SB', x.getPixelForValue(87.5), y.getPixelForValue(37.5))
+            ctx.fillText('SA', x.getPixelForValue(87.5), y.getPixelForValue(62.5))
+            ctx.fillText('SS', x.getPixelForValue(87.5), y.getPixelForValue(87.5))
+            //タイプ
+            ctx.fillStyle = 'white'
+            ctx.font = "30px 'MS明朝'";
+            ctx.fillText('ダラダラ', x.getPixelForValue(25), y.getPixelForValue(25))
+            ctx.fillText('ヘトヘト', x.getPixelForValue(75), y.getPixelForValue(25))
+            ctx.fillText('キラキラ', x.getPixelForValue(25), y.getPixelForValue(75))
+            ctx.fillText('ギラギラ', x.getPixelForValue(75), y.getPixelForValue(75))
+            ctx.restore()
+        },
+    }
+
+    const myChart3 = new Chart(document.getElementById('myChart3'), {
+        type: 'scatter',
+        data: {
+            datasets: [
+                {
+                    type: 'scatter',
+                    label: '今回',
+                    data: [
+                        {
+                            x: point_stress,
+                            y: point_qol,
+                        },
+                    ],
+                    backgroundColor: 'rgba(150, 245, 84,0.4)',
+                    borderColor: 'rgba(150, 245, 84,1)',
+                    borderWidth: 2.5,
+                    pointRadius: 14,
+                    pointStyle: 'triangle'
+                },
+                {
+                    type: 'scatter',
+                    label: '前回',
+                    data: [
+                        {
+                            x: previous_point_stress,
+                            y: previous_point_qol,
+                        },
+                    ],
+                    backgroundColor: 'rgba(243,232,150,0.4)',
+                    borderColor: 'rgba(243,232,150,1)',
+                    borderWidth: 2.5,
+                    pointRadius: 14,
+                    pointStyle: 'triangle'
+                },
+                //{
+                //    type: 'bubble',
+                //    label: 'これまでの結果',
+                //    data: past_data_stressqol,
+                //    backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                //   borderColor: 'rgba(75, 192, 192, 0.8)',
+                //}
+            ],
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom',
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                    title: {
+                        display: true,
+                        text: 'ストレス'
+                    },
+                    grid: {
+                        display: false
+                    },
+                },
+                y: {
+                    //type: 'linear',
+                    //position: 'bottom',
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                    title: {
+                        display: true,
+                        text: 'QOL'
+                    },
+                    grid: {
+                        display: false
+                    },
                 }
-                return color
-        }
-
-        function getRankColor(point) {
-                let rank = ''
-                if (point < 25) {
-                        rank = '#FAA60D'
-                } else if (point >= 25 && point < 50) {
-                        rank = '#F3E896'
-                } else if (point >= 50 && point < 75) {
-                        rank = '#0CBFF3'
-                } else {
-                        rank = '#48F561'
-                }
-                return rank
-        }
-        document.getElementById('status').innerHTML = stressQolType
-        document.getElementById('status-desc').innerHTML = stressQolTypeDesc
-        document.getElementById('status').style.color = getTypeColor(stressQolType);
-        document.getElementById('diff-from-criteria-stress').innerHTML = diff_criteria_stress
-        document.getElementById('diff-from-average-stress').innerHTML = diff_avg_stress
-        document.getElementById('diff-from-criteria-qol').innerHTML = diff_criteria_qol
-        document.getElementById('diff-from-average-qol').innerHTML = diff_avg_qol
-        document.getElementById('stress-rank').innerHTML = getRank(point_stress);
-        document.getElementById('qol-rank').innerHTML = getRank(point_qol);
-        document.getElementById('stress-rank').style.color = getRankColor(point_stress);
-        document.getElementById('qol-rank').style.color = getRankColor(point_qol);
-        document.getElementById('stress-rank2').innerHTML = getRank(point_stress);
-        document.getElementById('qol-rank2').innerHTML = getRank(point_qol);
-        document.getElementById('stress-rank2').style.color = getRankColor(point_stress);
-        document.getElementById('qol-rank2').style.color = getRankColor(point_qol);
-
-        const arbitraryLine = {
-                id: 'arbitraryLine',
-                beforeDraw(chart, args, options) {
-                        const {
-                                ctx,
-                                chartArea: { top, right, bottom, left, width, height },
-                                scales: { x, y },
-                        } = chart
-                        ctx.save()
-                        ctx.setLineDash([3])
-                        ctx.strokeStyle = 'rgba(255,26,104,1)'
-                        ctx.strokeRect(x.getPixelForValue(criteria_stress), top, 0, height)
-                        ctx.strokeStyle = dense_color_stress
-                        ctx.strokeRect(x.getPixelForValue(avg_stress), top, 0, height / 2)
-                        ctx.strokeStyle = dense_color_qol
-                        ctx.strokeRect(x.getPixelForValue(avg_qol), top + height / 2, 0, height / 2)
-                        ctx.restore()
-                        ctx.font = '12px Arial'
-                        ctx.fillStyle = 'rgba(255,26,104,1)'
-                        ctx.fillText('標準値', x.getPixelForValue(criteria_stress) + 5, top + 98)
-                        ctx.fillStyle = dense_color_stress
-                        ctx.fillText('ストレスの平均', x.getPixelForValue(avg_stress) + 5, top + 22)
-                        ctx.fillStyle = dense_color_qol
-                        ctx.fillText('QOLの平均', x.getPixelForValue(avg_qol) + 5, top + height / 2 + 98)
-                        ctx.font = '30px Arial'
-                        //ctx.fillStyle = 'rgba(128, 128, 128, 0.5)';
-                        //ctx.fillText(construct_stress, 25 , height / 2 + top+10);
-                },
-        }
-
-        const options = {
-                indexAxis: 'y',
-                scales: {
-                        x: {
-                                min: 0,
-                                max: 100,
-                        },
-                },
-                plugins: {
-                        legend: {
-                                display: false,
-                        },
-                },
-        }
-
-        const chart = new Chart(document.getElementById('myChart'), {
-                type: 'bar',
-                data: {
-                        labels: [construct_stress, construct_qol],
-                        datasets: [
-                                {
-                                        label: '',
-                                        data: [point_stress, point_qol],
-                                        backgroundColor: [weak_color_stress, weak_color_qol],
-                                        borderColor: [dense_color_stress, dense_color_qol],
-                                        borderWidth: 1,
-                                        barPercentage: 0.5
-                                },
-                        ],
-                },
-                options: options,
-                plugins: [arbitraryLine],
-        })
-
-        //遷移グラフ
-        const arbitraryLine3 = {
-                id: 'arbitraryLine',
-                beforeDraw(chart, args, options) {
-                        const {
-                                ctx,
-                                chartArea: { top, right, bottom, left, width, height },
-                                scales: { x, y },
-                        } = chart
-                        ctx.save()
-                        ctx.setLineDash([5])
-                        ctx.strokeStyle = 'rgba(255,26,104,1)'
-                        ctx.strokeRect(left, y.getPixelForValue(criteria_stress), width, 0)
-                        ctx.strokeStyle = dense_color_stress
-                        ctx.strokeRect(left, y.getPixelForValue(avg_stress), width, 0)
-                        ctx.strokeStyle = dense_color_qol
-                        ctx.strokeRect(left, y.getPixelForValue(avg_qol), width, 0)
-                        ctx.restore()
-                        ctx.font = '13px Arial'
-                        ctx.fillStyle = 'rgba(255,26,104,1)'
-                        //ctx.fillText('標準値', left+10, y.getPixelForValue(criteria_stress)-11)
-                        ctx.fillStyle = dense_color_stress
-                        //ctx.fillText('STRESS', right, y.getPixelForValue(avg_stress)-11)
-                        ctx.fillStyle = dense_color_qol
-                        //ctx.fillText('QOL', right, y.getPixelForValue(avg_qol)-11)
-                        ctx.font = '30px Arial'
-                },
-        }
-        const myChart2 = new Chart(document.getElementById('myChart2'), {
-                type: 'line',
-                data: {
-                        labels: past_data_at_stress,
-                        datasets: [
-                                {
-                                        label: ["ストレス（ - 平均）"],
-                                        data: past_data_values_stress,
-                                        borderColor: dense_color_stress,
-                                        pointBorderColor: dense_color_stress,
-                                        pointBackgroundColor: 'rgba(0,0,0,0)',
-                                        borderWidth: 2,
-                                        backgroundColor: 'rgba(0,0,0,0)',
-                                },
-                                {
-                                        label: ["QOL（ - 平均）"],
-                                        data: past_data_values_qol,
-                                        borderColor: dense_color_qol,
-                                        pointBorderColor: dense_color_qol,
-                                        pointBackgroundColor: 'rgba(0,0,0,0)',
-                                        borderWidth: 2,
-                                        backgroundColor: 'rgba(0,0,0,0)',
-                                },
-                                {
-                                        label: ["標準"],
-                                        data: past_data_values_qol,
-                                        borderColor: 'rgba(255,26,104,1)',
-                                        pointBorderColor: "rgba(255,26,104,1)",
-                                        pointBackgroundColor: 'rgba(0,0,0,0)',
-                                        borderWidth: 2,
-                                        backgroundColor: 'rgba(0,0,0,0)',
-                                },
-                        ],
-                },
-                options: {
-                        indexAxis: 'x',
-                        scales: {
-                                x: {
-                                        type: 'time',
-                                        time: {
-                                                unit: 'day',
-                                        },
-                                        suggestedMin: past_data_at_stress[0], //Date.now() - (3 * 24 * 60 * 60 * 1000),
-                                        suggestedMax: past_data_at_stress[-1],
-                                },
-                                y: {
-                                        beginAtZero: true,
-                                        suggestedMin: 0,
-                                        suggestedMax: 100,
-                                },
-                        },
-                },
-                plugins: [arbitraryLine3],
-        })
-
-        const arbitraryLine2 = {
-                id: 'arbitraryLine2',
-                beforeDraw(chart, args, options) {
-                        const {
-                                ctx,
-                                chartArea: { top, right, bottom, left, width, height },
-                                scales: { x, y },
-                        } = chart
-                        ctx.save()
-                        const x_start_first = x.getPixelForValue(75);
-                        const x_start_second = x.getPixelForValue(50);
-                        const x_start_third = x.getPixelForValue(25);
-                        const x_start_forth = x.getPixelForValue(0);
-
-                        const y_start_second = y.getPixelForValue(75);
-                        const y_start_third = y.getPixelForValue(50);
-                        const y_start_forth = y.getPixelForValue(25);
-                        const area_width = width / 4;
-                        const area_height = y.getPixelForValue(75) - y.getPixelForValue(100);
-                        //右上
-                        ctx.fillStyle = 'rgba(188, 75, 192, 0.8)' //4
-                        ctx.fillRect(x_start_first, top, area_width, area_height)
-                        ctx.fillStyle = 'rgba(188, 75, 192, 0.6)' //3
-                        ctx.fillRect(x_start_second, top, area_width, area_height)
-                        ctx.fillStyle = 'rgba(188, 75, 192, 0.6)' //8
-                        ctx.fillRect(x_start_first, y_start_second, area_width, area_height)
-                        ctx.fillStyle = 'rgba(188, 75, 192, 0.4)' //7
-                        ctx.fillRect(x_start_second, y_start_second, area_width, area_height)
-                        //左上
-                        ctx.fillStyle = 'rgba(255,159,64,0.6)' //2
-                        ctx.fillRect(x_start_third, top, area_width, area_height)
-                        ctx.fillStyle = 'rgba(255,159,64,0.8)' //1
-                        ctx.fillRect(x_start_forth, top, area_width, area_height)
-                        ctx.fillStyle = 'rgba(255,159,64,0.4)' //4
-                        ctx.fillRect(x_start_third, y_start_second, area_width, area_height)
-                        ctx.fillStyle = 'rgba(255,159,64,0.6)' //3
-                        ctx.fillRect(x_start_forth, y_start_second, area_width, area_height)
-                        //左下
-                        ctx.fillStyle = 'rgba(75,192,192,0.4)' //10
-                        ctx.fillRect(x_start_third, y_start_third, area_width, area_height)
-                        ctx.fillStyle = 'rgba(75,192,192,0.6)' //9
-                        ctx.fillRect(x_start_forth, y_start_third, area_width, area_height)
-                        ctx.fillStyle = 'rgba(75,192,192,0.6)' //14
-                        ctx.fillRect(x_start_third, y_start_forth, area_width, area_height)
-                        ctx.fillStyle = 'rgba(75,192,192,0.8)' //13
-                        ctx.fillRect(x_start_forth, y_start_forth, area_width, area_height)
-                        //右下
-                        ctx.fillStyle = 'rgba(255,26,104,0.6)' //12
-                        ctx.fillRect(x_start_first, y_start_third, area_width, area_height)
-                        ctx.fillStyle = 'rgba(255,26,104,0.4)' //11
-                        ctx.fillRect(x_start_second, y_start_third, area_width, area_height)
-                        ctx.fillStyle = 'rgba(255,26,104,0.8)' //16
-                        ctx.fillRect(x_start_first, y_start_forth, area_width, area_height)
-                        ctx.fillStyle = 'rgba(255,26,104,0.6)' //15
-                        ctx.fillRect(x_start_second, y_start_forth, area_width, area_height)
-                        //テキスト
-                        ctx.fillStyle = 'white'
-                        ctx.textAlign = 'center';
-                        //ランク
-                        //
-                        ctx.font = '19px Arial'
-                        ctx.fillText('CC', x.getPixelForValue(12.5), y.getPixelForValue(12.5))
-                        ctx.fillText('CB', x.getPixelForValue(12.5), y.getPixelForValue(37.5))
-                        ctx.fillText('CA', x.getPixelForValue(12.5), y.getPixelForValue(62.5))
-                        ctx.fillText('CS', x.getPixelForValue(12.5), y.getPixelForValue(87.5))
-                        //
-                        ctx.fillText('BC', x.getPixelForValue(37.5), y.getPixelForValue(12.5))
-                        ctx.fillText('BB', x.getPixelForValue(37.5), y.getPixelForValue(37.5))
-                        ctx.fillText('BA', x.getPixelForValue(37.5), y.getPixelForValue(62.5))
-                        ctx.fillText('BS', x.getPixelForValue(37.5), y.getPixelForValue(87.5))
-
-                        ctx.fillText('AC', x.getPixelForValue(62.5), y.getPixelForValue(12.5))
-                        ctx.fillText('AB', x.getPixelForValue(62.5), y.getPixelForValue(37.5))
-                        ctx.fillText('AA', x.getPixelForValue(62.5), y.getPixelForValue(62.5))
-                        ctx.fillText('AS', x.getPixelForValue(62.5), y.getPixelForValue(87.5))
-                        //SX
-                        ctx.fillText('SC', x.getPixelForValue(87.5), y.getPixelForValue(12.5))
-                        ctx.fillText('SB', x.getPixelForValue(87.5), y.getPixelForValue(37.5))
-                        ctx.fillText('SA', x.getPixelForValue(87.5), y.getPixelForValue(62.5))
-                        ctx.fillText('SS', x.getPixelForValue(87.5), y.getPixelForValue(87.5))
-                        //タイプ
-                        ctx.fillStyle = 'white'
-                        ctx.font = "30px 'MS明朝'";
-                        ctx.fillText('ダラダラ', x.getPixelForValue(25), y.getPixelForValue(25))
-                        ctx.fillText('ヘトヘト', x.getPixelForValue(75), y.getPixelForValue(25))
-                        ctx.fillText('キラキラ', x.getPixelForValue(25), y.getPixelForValue(75))
-                        ctx.fillText('ギラギラ', x.getPixelForValue(75), y.getPixelForValue(75))
-                        ctx.restore()
-                },
-        }
-
-        const myChart3 = new Chart(document.getElementById('myChart3'), {
-                type: 'scatter',
-                data: {
-                        datasets: [
-                                {
-                                        type: 'scatter',
-                                        label: '今回',
-                                        data: [
-                                                {
-                                                        x: point_stress,
-                                                        y: point_qol,
-                                                },
-                                        ],
-                                        backgroundColor: 'rgba(150, 245, 84,0.4)',
-                                        borderColor: 'rgba(150, 245, 84,1)',
-                                        borderWidth: 2.5,
-                                        pointRadius: 14,
-                                        pointStyle: 'triangle'
-                                },
-                                {
-                                        type: 'scatter',
-                                        label: '前回',
-                                        data: [
-                                                {
-                                                        x: previous_point_stress,
-                                                        y: previous_point_qol,
-                                                },
-                                        ],
-                                        backgroundColor: 'rgba(243,232,150,0.4)',
-                                        borderColor: 'rgba(243,232,150,1)',
-                                        borderWidth: 2.5,
-                                        pointRadius: 14,
-                                        pointStyle: 'triangle'
-                                },
-                                //{
-                                //    type: 'bubble',
-                                //    label: 'これまでの結果',
-                                //    data: past_data_stressqol,
-                                //    backgroundColor: 'rgba(75, 192, 192, 0.1)',
-                                //   borderColor: 'rgba(75, 192, 192, 0.8)',
-                                //}
-                        ],
-                },
-                options: {
-                        scales: {
-                                x: {
-                                        type: 'linear',
-                                        position: 'bottom',
-                                        suggestedMin: 0,
-                                        suggestedMax: 100,
-                                        title: {
-                                                display: true,
-                                                text: 'ストレス'
-                                        },
-                                        grid: {
-                                                display: false
-                                        },
-                                },
-                                y: {
-                                        //type: 'linear',
-                                        //position: 'bottom',
-                                        suggestedMin: 0,
-                                        suggestedMax: 100,
-                                        title: {
-                                                display: true,
-                                                text: 'QOL'
-                                        },
-                                        grid: {
-                                                display: false
-                                        },
-                                }
-                        },
-                },
-                plugins: [arbitraryLine2],
-        })
+            },
+        },
+        plugins: [arbitraryLine2],
+    })
 
 
-        const hist_labels = JSON.parse(document.getElementById('hist_labels').textContent);
-        const hist_stress = JSON.parse('{{ hist_stress|safe }}');
-        const hist_qol = JSON.parse('{{ hist_qol|safe }}');
-        const hist_thistime_stress = JSON.parse('{{ hist_thistime_stress|safe }}');
-        const hist_thistime_qol = JSON.parse('{{ hist_thistime_qol|safe }}');
+    const hist_labels = JSON.parse(document.getElementById('hist_labels').textContent);
+    const hist_stress = JSON.parse('{{ hist_stress|safe }}');
+    const hist_qol = JSON.parse('{{ hist_qol|safe }}');
+    const hist_thistime_stress = JSON.parse('{{ hist_thistime_stress|safe }}');
+    const hist_thistime_qol = JSON.parse('{{ hist_thistime_qol|safe }}');
 
-        let bgcolors_stress = Array(hist_thistime_stress.length);
-        let bgcolor_stress = '';
-        let bordercolors_stress = Array(hist_thistime_stress.length);
-        let bordercolor_stress = '';
+    let bgcolors_stress = Array(hist_thistime_stress.length);
+    let bgcolor_stress = '';
+    let bordercolors_stress = Array(hist_thistime_stress.length);
+    let bordercolor_stress = '';
 
-        for (let i = 0; i < hist_thistime_stress.length; i++) {
-                if (hist_thistime_stress[i] == 0) {
-                        bgcolor_stress = weak_color_stress;
-                        bordercolor_stress = dense_color_stress;
-                } else {
-                        bgcolor_stress = 'rgba(150, 245, 84,0.2)';
-                        bordercolor_stress = 'rgba(150, 245, 84,1)';
-                };
-                bgcolors_stress[i] = bgcolor_stress;
-                bordercolors_stress[i] = bordercolor_stress;
-        }
-        let bgcolors_qol = Array(hist_thistime_qol.length);
-        let bgcolor_qol = '';
-        let bordercolors_qol = Array(hist_thistime_qol.length);
-        let bordercolor_qol = '';
-
-        for (let i = 0; i < hist_thistime_qol.length; i++) {
-                if (hist_thistime_qol[i] == 0) {
-                        bgcolor_qol = weak_color_qol;
-                        bordercolor_qol = dense_color_qol;
-                } else {
-                        bgcolor_qol = 'rgba(150, 245, 84,0.2)';
-                        bordercolor_qol = 'rgba(150, 245, 84,1)';
-                };
-                bgcolors_qol[i] = bgcolor_qol;
-                bordercolors_qol[i] = bordercolor_qol;
+    for (let i = 0; i < hist_thistime_stress.length; i++) {
+        if (hist_thistime_stress[i] == 0) {
+            bgcolor_stress = weak_color_stress;
+            bordercolor_stress = dense_color_stress;
+        } else {
+            bgcolor_stress = 'rgba(150, 245, 84,0.2)';
+            bordercolor_stress = 'rgba(150, 245, 84,1)';
         };
+        bgcolors_stress[i] = bgcolor_stress;
+        bordercolors_stress[i] = bordercolor_stress;
+    }
+    let bgcolors_qol = Array(hist_thistime_qol.length);
+    let bgcolor_qol = '';
+    let bordercolors_qol = Array(hist_thistime_qol.length);
+    let bordercolor_qol = '';
 
-        console.log(bgcolors_qol);
+    for (let i = 0; i < hist_thistime_qol.length; i++) {
+        if (hist_thistime_qol[i] == 0) {
+            bgcolor_qol = weak_color_qol;
+            bordercolor_qol = dense_color_qol;
+        } else {
+            bgcolor_qol = 'rgba(150, 245, 84,0.2)';
+            bordercolor_qol = 'rgba(150, 245, 84,1)';
+        };
+        bgcolors_qol[i] = bgcolor_qol;
+        bordercolors_qol[i] = bordercolor_qol;
+    };
+
+    console.log(bgcolors_qol);
 
 
-        const myChart4 = new Chart(document.getElementById('myChart4'), {
-                type: 'bar',
-                data: {
-                        labels: hist_labels,
-                        datasets: [{
-                                label: 'ストレス値の分布',
-                                data: hist_stress,
-                                backgroundColor: bgcolors_stress,
-                                borderColor: dense_color_stress,
-                                borderWidth: 1,
-                                barPercentage: 1
-                        }
-                        ]
+    const myChart4 = new Chart(document.getElementById('myChart4'), {
+        type: 'bar',
+        data: {
+            labels: hist_labels,
+            datasets: [{
+                label: 'ストレス値の分布',
+                data: hist_stress,
+                backgroundColor: bgcolors_stress,
+                borderColor: dense_color_stress,
+                borderWidth: 1,
+                barPercentage: 1
+            }
+            ]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'ストレス値'
+                    },
+                    grid: {
+                        display: false
+                    },
                 },
-                options: {
-                        scales: {
-                                x: {
-                                        title: {
-                                                display: true,
-                                                text: 'ストレス値'
-                                        },
-                                        grid: {
-                                                display: false
-                                        },
-                                },
-                                y: {
-                                        title: {
-                                                display: true,
-                                                text: '人数'
-                                        },
-                                        grid: {
-                                                display: false
-                                        },
-                                }
-                        },
-                        plugins: {
-                                legend: {
-                                        display: false,
-                                },
-                        },
+                y: {
+                    title: {
+                        display: true,
+                        text: '人数'
+                    },
+                    grid: {
+                        display: false
+                    },
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
                 },
-        });
+            },
+        },
+    });
 
-        const myChart5 = new Chart(document.getElementById('myChart5'), {
-                type: 'bar',
-                data: {
-                        labels: hist_labels,
-                        datasets: [{
-                                label: 'QOL値の分布',
-                                data: hist_qol,
-                                backgroundColor: bgcolors_qol,
-                                borderColor: dense_color_qol,
-                                borderWidth: 1,
-                                barPercentage: 1
-                        }
-                        ]
+    const myChart5 = new Chart(document.getElementById('myChart5'), {
+        type: 'bar',
+        data: {
+            labels: hist_labels,
+            datasets: [{
+                label: 'QOL値の分布',
+                data: hist_qol,
+                backgroundColor: bgcolors_qol,
+                borderColor: dense_color_qol,
+                borderWidth: 1,
+                barPercentage: 1
+            }
+            ]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'QOL値'
+                    },
+                    grid: {
+                        display: false
+                    },
                 },
-                options: {
-                        scales: {
-                                x: {
-                                        title: {
-                                                display: true,
-                                                text: 'QOL値'
-                                        },
-                                        grid: {
-                                                display: false
-                                        },
-                                },
-                                y: {
-                                        title: {
-                                                display: true,
-                                                text: '人数'
-                                        },
-                                        grid: {
-                                                display: false
-                                        },
-                                }
-                        },
-                        plugins: {
-                                legend: {
-                                        display: false,
-                                },
-                        },
+                y: {
+                    title: {
+                        display: true,
+                        text: '人数'
+                    },
+                    grid: {
+                        display: false
+                    },
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
                 },
-        });
+            },
+        },
+    });
 </script>
 {% endblock %}
