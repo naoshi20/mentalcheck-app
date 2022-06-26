@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <p id="result-statement">テキストテキスト（タイプに関する説明が入ります）</p>
+                <p id="status-desc">タイプに関する説明</p>
                 <div class="top-container">
                     <div class="top-right-container" style="height: 100%;">
                         <div class="chart-box">
@@ -265,6 +265,19 @@
         stressQolType = 'ヘトヘト'
     }
 
+    let stressQolTypeDesc = ''
+
+        if ((degreeStress == 'lowest' || degreeStress == 'lower') && (degreeQol == 'lowest' || degreeQol == 'lower')) {
+                stressQolTypeDesc = '「ダラダラ」タイプに当てはまった方は、ストレス度は低いが生活の満足感も低い状態だと考えられます。現在の生活に対し満足感していなく、何となくだらだらとした生活を送っている状態と思われるます。このタイプはストレスは低いので、「ストレス準適応型」といえますが、メンタルヘルスは高いとはいえないでしょう。何か自分が夢中になれることを探してみてはいかがでしょうか。'
+        } else if ((degreeStress == 'lowest' || degreeStress == 'lower') && (degreeQol == 'highest' || degreeQol == 'higher')) {
+                stressQolTypeDesc = '「キラキラ」タイプに当てはまった方は、ストレス度は低く生活の満足感は高い状態だと考えられます。現在の生活に生きがいを感じている状態と思われます。不快な出来事がないかあるいはあったとしても、うまく対処できていると考えられます。したがって、「ストレス適応型」ともいえ、極めてメンタルヘルスが高い状態といえます。この調子で健康なメンタルライフを送っていただきたいです。'
+        } else if ((degreeStress == 'highest' || degreeStress == 'higher') && (degreeQol == 'highest' || degreeQol == 'higher')) {
+                stressQolTypeDesc = '「ギラギラ」タイプに当てはまった方は、ストレス度が高く生活の満足感も高い状態だと考えられます。ストレスをためながらも目標に向かって頑張っている状態と考えられます。このパターンは、少しハイになった状態あるいは少し無理をしている可能性が高いです。「ストレス抵抗型」といえるでしょう。しかし、この状態が長期的に続くと心身の疲労が蓄積しある日突然心身に支障が出るかもしれません。適度な休みを心がけましょう。'
+        } else {
+                stressQolTypeDesc = '「ヘトヘト」タイプに当てはまった方は、ストレス度が低く生活の満足感も低い状態だと考えられます。ストレス度が高く現在の生活に対し満足していないので、生きがいを喪失している状態と思われます。このタイプはストレッサーに適応できていないので、「ストレス不適応型」といえるでしょう。早急に自分の心や身体と向き合い、何らかの対処を行いましょう。'
+        }
+
+
     function getTypeColor(type){
         let color = ''
         if (type=='ダラダラ') {
@@ -293,6 +306,7 @@
         return rank
     }
     document.getElementById('status').innerHTML = stressQolType
+    document.getElementById('status-desc').innerHTML = stressQolTypeDesc
     document.getElementById('status').style.color = getTypeColor(stressQolType);
     document.getElementById('diff-from-criteria-stress').innerHTML = diff_criteria_stress
     document.getElementById('diff-from-average-stress').innerHTML = diff_avg_stress
