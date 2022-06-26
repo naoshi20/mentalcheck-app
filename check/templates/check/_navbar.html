@@ -32,15 +32,6 @@
                     {% endif %}
                   </div>
                 </li>
-                <li class="scroll-to-section" style="visibility:hidden;">
-                  <div class="main-red-button-hover">
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}?next={% url 'check:index' %}" class="header-button-when-login">ログアウト</a>
-                    {% else %}
-                    <a href="{% url 'accounts:login' %}?next={{ request.path }}">ログイン</a>
-                    {% endif %}
-                  </div>
-                </li>
               </ul>
               <a class="menu-trigger">
                 <span>Menu</span>

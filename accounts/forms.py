@@ -28,12 +28,12 @@ def get_activate_url(user, params):
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label="メールアドレス")
     password1 = forms.CharField(required=True, label="パスワード", widget=forms.PasswordInput)
-    phone = forms.CharField(required=True, label="電話番号（ハイフンなし）", max_length=16)
+    #phone = forms.CharField(required=True, label="電話番号（ハイフンなし）", max_length=16)
     answers = forms.CharField(required=False, label="", widget=forms.HiddenInput)
 
     class Meta:
         model = User
-        fields = ('email', 'password1', 'phone')# 'password2'
+        fields = ('email', 'password1')#, 'phone'
 
     def save(self, commit=True):
         # commit=Falseだと、DBに保存されない
